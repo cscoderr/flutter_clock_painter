@@ -29,7 +29,7 @@ $ flutter run --flavor staging --target lib/main_staging.dart
 $ flutter run --flavor production --target lib/main_production.dart
 ```
 ## Screenshot
-<img src="1.png" width="100%" vspace="10" hspace="10">
+<img src="1.png" width="50%" vspace="10" hspace="10">
 
 [coverage_badge]: coverage_badge.svg
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
