@@ -140,16 +140,12 @@ class ClockFacePainter extends CustomPainter {
       arcPaint,
     );
 
-    final lineRadius = center.width - 40 - 35;
-    final centerOffset = Offset(center.width, center.height);
-
     for (var i = 0; i < 360; i += 6) {
-      //replaced with toPolar
-      // final x1 = center.width + (center.height - 115) * math.cos(i.radians);
-      // final y1 = center.height + (center.width - 70) * math.sin(i.radians);
-      //
-      // final x2 = center.width + (center.width - 90) * math.cos(i.radians);
-      // final y2 = center.height + (center.width - 80) * math.sin(i.radians);
+      final x1 = center.width + (center.height - 115) * math.cos(i.radians);
+      final y1 = center.height + (center.width - 70) * math.sin(i.radians);
+
+      final x2 = center.width + (center.width - 90) * math.cos(i.radians);
+      final y2 = center.height + (center.width - 80) * math.sin(i.radians);
 
       if ((i % 90) == 0) {
         final textPainter = TextPainter(
@@ -168,42 +164,17 @@ class ClockFacePainter extends CustomPainter {
 
         textPainter.paint(
           canvas,
-          toPolar(
-            centerOffset,
-            i.radians,
-            lineRadius - 16 - 10,
+          Offset(
+            center.width + 72 * math.cos(i.radians),
+            center.height + 72 * math.sin(i.radians),
           ),
         );
       }
 
       if ((i % 30) == 0) {
-        canvas.drawLine(
-          toPolar(
-            centerOffset,
-            i.radians,
-            lineRadius,
-          ),
-          toPolar(
-            centerOffset,
-            i.radians,
-            lineRadius - 10,
-          ),
-          tickPaint,
-        );
+        canvas.drawLine(Offset(x1, y1), Offset(x2, y2), tickPaint);
       } else {
-        canvas.drawLine(
-          toPolar(
-            centerOffset,
-            i.radians,
-            lineRadius,
-          ),
-          toPolar(
-            centerOffset,
-            i.radians,
-            lineRadius - 10,
-          ),
-          tickPaint2,
-        );
+        canvas.drawLine(Offset(x1, y1), Offset(x2, y2), tickPaint2);
       }
     }
 
